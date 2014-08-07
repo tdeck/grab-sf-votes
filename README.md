@@ -8,8 +8,11 @@ fill a sqlite database.
 Usage
 -----
 Prepare the database:
+
     ./reset_db
+
 Dump all the vote data from 2010 to 2014:
+
     python collect_votes.py 2010 2014
 
 Setup

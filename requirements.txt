@@ -1,0 +1,3 @@
+# git+https://github.com/fgregg/legistar-scrape.git
+../legistar-scrape
+sqlalchemy

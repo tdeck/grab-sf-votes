@@ -13,7 +13,7 @@ CONNECTION_STRING = 'sqlite:///vote_db.sqlite'
 Base = declarative_base()
 
 class Legislator(Base):
-    __tablename__ = 'Legislators'
+    __tablename__ = 'legislators'
 
     id = Column(Integer, primary_key=True)
     name =  Column(String(255))
@@ -24,7 +24,7 @@ class Legislator(Base):
         self.name = name
 
 class Proposal(Base):
-    __tablename__ = 'Proposals'
+    __tablename__ = 'proposals'
 
     id = Column(Integer, primary_key=True)
     title = Column(String)
@@ -40,11 +40,11 @@ class Proposal(Base):
         self.title = title
 
 class VoteEvent(Base):
-    __tablename__ = 'VoteEvents'
+    __tablename__ = 'vote_events'
 
     id = Column(Integer, primary_key=True)
     vote_date = Column(Date)
-    proposal_id = Column(Integer, ForeignKey('Proposals.id'))
+    proposal_id = Column(Integer, ForeignKey('proposals.id'))
 
     votes = relationship('Vote', backref='vote_event')
 
@@ -53,10 +53,10 @@ class VoteEvent(Base):
         self.vote_date = vote_date
 
 class Vote(Base):
-    __tablename__ = 'Votes'
+    __tablename__ = 'votes'
     
-    legislator_id = Column(Integer, ForeignKey('Legislators.id'), primary_key=True)
-    vote_event_id = Column(Integer, ForeignKey('VoteEvents.id'), primary_key=True)
+    legislator_id = Column(Integer, ForeignKey('legislators.id'), primary_key=True)
+    vote_event_id = Column(Integer, ForeignKey('vote_events.id'), primary_key=True)
     aye_vote = Column(Boolean)
 
     def __init__(self, legislator, proposal, aye):

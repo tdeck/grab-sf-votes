@@ -5,7 +5,7 @@
 --       PRAGMA foreign_keys = ON 
 --       for every connection!
 
-CREATE TABLE Proposals (
+CREATE TABLE proposals (
     id INTEGER PRIMARY KEY,
     title TEXT,
     file_number INTEGER UNIQUE,
@@ -14,20 +14,20 @@ CREATE TABLE Proposals (
     proposal_type VARCHAR(255)
 );
 
-CREATE TABLE VoteEvents (
+CREATE TABLE vote_events (
     id INTEGER PRIMARY KEY,
     vote_date TEXT, -- Note: DATE would have NUMERIC affinity
-    proposal_id INTEGER REFERENCES Proposals(id)
+    proposal_id INTEGER REFERENCES proposals(id)
 );
 
-CREATE TABLE Legislators (
+CREATE TABLE legislators (
     id INTEGER PRIMARY KEY,
     name VARCHAR(255) UNIQUE
 );
 
-CREATE TABLE Votes (
-    legislator_id INTEGER REFERENCES Legislators(id),
-    vote_event_id INTEGER REFERENCES VoteEvents(id),
+CREATE TABLE votes (
+    legislator_id INTEGER REFERENCES legislators(id),
+    vote_event_id INTEGER REFERENCES vote_events(id),
     aye_vote BOOLEAN, -- 1 => aye, 0 => nay
     -- Note: If a legislator does not vote on a proposal, there will be no 
      --      entry in this table.

@@ -1,0 +1,8 @@
+#! /bin/bash
+# Drop the database and repopulate it with the schema
+# requires the sqlite3 command line program.
+
+rm -f vote_db.sqlite
+sqlite3 vote_db.sqlite < schema.sql
+
+echo Done.

@@ -13,6 +13,9 @@ CONNECTION_STRING = 'sqlite:///vote_db.sqlite'
 Base = declarative_base()
 
 class Legislator(Base):
+    """
+    A supervisor with a name.
+    """
     __tablename__ = 'legislators'
 
     id = Column(Integer, primary_key=True)
@@ -24,6 +27,9 @@ class Legislator(Base):
         self.name = name
 
 class Proposal(Base):
+    """
+    A piece of legislation (law, ordinance, whatever), passed or not.
+    """
     __tablename__ = 'proposals'
 
     id = Column(Integer, primary_key=True)
@@ -40,6 +46,9 @@ class Proposal(Base):
         self.title = title
 
 class VoteEvent(Base):
+    """
+    A time when a vote was held about a piece of proposed legislation.
+    """
     __tablename__ = 'vote_events'
 
     id = Column(Integer, primary_key=True)
@@ -53,6 +62,11 @@ class VoteEvent(Base):
         self.vote_date = vote_date
 
 class Vote(Base):
+    """
+    A particular legislator's vote during a vote event.
+    NOTE: If there is no vote here, the legislator may have been absent or 
+          may have abstained.
+    """
     __tablename__ = 'votes'
     
     legislator_id = Column(Integer, ForeignKey('legislators.id'), primary_key=True)

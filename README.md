@@ -57,3 +57,7 @@ Extensions
    legislation.
 3. Get some more info about the supervisors into the DB - supervisors are
    people (TM), too!
+
+License
+-------
+This code is released under the terms of the [MIT License](http://troy.mit-license.org).
